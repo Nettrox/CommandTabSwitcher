@@ -27,6 +27,8 @@
 		E848FC54300902ED0039115D /* CommandTabSwitcher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CommandTabSwitcher.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E848FC62300902EE0039115D /* CommandTabSwitcherTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CommandTabSwitcherTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E848FC6C300902EE0039115D /* CommandTabSwitcherUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CommandTabSwitcherUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E848FCF1300904DF0039115D /* CommandTabSwitcher.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = CommandTabSwitcher.xcodeproj; sourceTree = "<group>"; };
+		E8530A323009426500F87927 /* CommandTabSwitcher.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = CommandTabSwitcher.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -88,6 +90,20 @@
 				E848FC54300902ED0039115D /* CommandTabSwitcher.app */,
 				E848FC62300902EE0039115D /* CommandTabSwitcherTests.xctest */,
 				E848FC6C300902EE0039115D /* CommandTabSwitcherUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E848FCF2300904DF0039115D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E8530A333009426500F87927 /* Products */ = {
+			isa = PBXGroup;
+			children = (
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -198,6 +214,16 @@
 			preferredProjectObjectVersion = 77;
 			productRefGroup = E848FC55300902ED0039115D /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = E8530A333009426500F87927 /* Products */;
+					ProjectRef = E8530A323009426500F87927 /* CommandTabSwitcher.xcodeproj */;
+				},
+				{
+					ProductGroup = E848FCF2300904DF0039115D /* Products */;
+					ProjectRef = E848FCF1300904DF0039115D /* CommandTabSwitcher.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				E848FC53300902ED0039115D /* CommandTabSwitcher */,
@@ -403,6 +429,11 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/CommandTabSwitcher/.build/Build/Intermediates.noindex/CommandTabSwitcher.build/Debug/CommandTabSwitcher.build/Objects-normal/x86_64/Binary",
+					"$(PROJECT_DIR)/CommandTabSwitcher/.build/Build/Intermediates.noindex/CommandTabSwitcher.build/Debug/CommandTabSwitcher.build/Objects-normal/arm64/Binary",
+				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = axu.CommandTabSwitcher;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -427,6 +458,11 @@
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/CommandTabSwitcher/.build/Build/Intermediates.noindex/CommandTabSwitcher.build/Debug/CommandTabSwitcher.build/Objects-normal/x86_64/Binary",
+					"$(PROJECT_DIR)/CommandTabSwitcher/.build/Build/Intermediates.noindex/CommandTabSwitcher.build/Debug/CommandTabSwitcher.build/Objects-normal/arm64/Binary",
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = axu.CommandTabSwitcher;
