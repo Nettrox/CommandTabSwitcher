@@ -1,9 +1,10 @@
 import AppKit
 
-final class ApplicationController: NSObject {
+final class ApplicationController: NSObject, NSMenuDelegate {
     private let permissionService: PermissionService
     private let accessibilityService: AccessibilityService
     private let screenCaptureService: ScreenCaptureService
+    private let launchAtLoginService: LaunchAtLoginService
 
     private let windowService: WindowService
     private let applicationService: ApplicationService
@@ -12,6 +13,8 @@ final class ApplicationController: NSObject {
 
     private var keyboardMonitorService: KeyboardMonitorService?
     private var statusItem: NSStatusItem?
+
+    private var launchAtLoginMenuItem: NSMenuItem?
 
     private var switcherItems: [SwitcherItem] = []
     private var selectedIndex = 0
@@ -26,6 +29,7 @@ final class ApplicationController: NSObject {
         self.permissionService = PermissionService()
         self.accessibilityService = AccessibilityService()
         self.screenCaptureService = screenCaptureService
+        self.launchAtLoginService = LaunchAtLoginService()
 
         self.windowService = windowService
 
@@ -45,6 +49,7 @@ final class ApplicationController: NSObject {
 
     func start() {
         configureApplication()
+        configureLaunchAtLogin()
         createStatusBarItem()
         checkPermissionsAndStartMonitoring()
 
@@ -62,12 +67,41 @@ final class ApplicationController: NSObject {
         }
 
         statusItem = nil
+        launchAtLoginMenuItem = nil
 
         Logger.info("Application controller stopped.")
     }
 
+    func menuWillOpen(_ menu: NSMenu) {
+        updateLaunchAtLoginMenuItem()
+    }
+
     private func configureApplication() {
         NSApp.setActivationPolicy(.accessory)
+    }
+
+    private func configureLaunchAtLogin() {
+        guard !launchAtLoginService.isEnabled else {
+            Logger.info("Launch at login is already enabled.")
+            return
+        }
+
+        let enabled = launchAtLoginService.enable()
+
+        if enabled {
+            Logger.info(
+                "CommandTabSwitcher will automatically start at login."
+            )
+            return
+        }
+
+        if launchAtLoginService.requiresApproval {
+            Logger.warning(
+                "Launch at login is waiting for user approval."
+            )
+
+            launchAtLoginService.openSystemSettings()
+        }
     }
 
     private func createStatusBarItem() {
@@ -85,6 +119,7 @@ final class ApplicationController: NSObject {
         }
 
         let menu = NSMenu()
+        menu.delegate = self
 
         let statusMenuItem = NSMenuItem(
             title: "CommandTabSwitcher is running",
@@ -94,6 +129,29 @@ final class ApplicationController: NSObject {
 
         statusMenuItem.isEnabled = false
         menu.addItem(statusMenuItem)
+
+        menu.addItem(.separator())
+
+        let launchAtLoginItem = NSMenuItem(
+            title: "Launch at Login",
+            action: #selector(toggleLaunchAtLogin),
+            keyEquivalent: ""
+        )
+
+        launchAtLoginItem.target = self
+        menu.addItem(launchAtLoginItem)
+
+        launchAtLoginMenuItem = launchAtLoginItem
+        updateLaunchAtLoginMenuItem()
+
+        let loginItemsSettingsItem = NSMenuItem(
+            title: "Open Login Items Settings",
+            action: #selector(openLoginItemsSettings),
+            keyEquivalent: ""
+        )
+
+        loginItemsSettingsItem.target = self
+        menu.addItem(loginItemsSettingsItem)
 
         menu.addItem(.separator())
 
@@ -146,6 +204,22 @@ final class ApplicationController: NSObject {
 
         item.menu = menu
         statusItem = item
+    }
+
+    private func updateLaunchAtLoginMenuItem() {
+        guard let launchAtLoginMenuItem else {
+            return
+        }
+
+        launchAtLoginMenuItem.state =
+            launchAtLoginService.isEnabled ? .on : .off
+
+        if launchAtLoginService.requiresApproval {
+            launchAtLoginMenuItem.title =
+                "Launch at Login — Approval Required"
+        } else {
+            launchAtLoginMenuItem.title = "Launch at Login"
+        }
     }
 
     private func checkPermissionsAndStartMonitoring() {
@@ -336,6 +410,35 @@ final class ApplicationController: NSObject {
     private func resetSwitcherSession() {
         switcherItems.removeAll()
         selectedIndex = 0
+    }
+
+    @objc
+    private func toggleLaunchAtLogin() {
+        let changed = launchAtLoginService.toggle()
+
+        updateLaunchAtLoginMenuItem()
+
+        if changed {
+            let message = launchAtLoginService.isEnabled
+                ? "Launch at login is enabled."
+                : "Launch at login is disabled."
+
+            Logger.info(message)
+            return
+        }
+
+        if launchAtLoginService.requiresApproval {
+            Logger.warning(
+                "Launch at login requires approval in System Settings."
+            )
+
+            launchAtLoginService.openSystemSettings()
+        }
+    }
+
+    @objc
+    private func openLoginItemsSettings() {
+        launchAtLoginService.openSystemSettings()
     }
 
     @objc

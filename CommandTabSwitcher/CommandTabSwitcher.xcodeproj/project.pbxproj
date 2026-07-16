@@ -16,6 +16,7 @@
 		2C3023D9161B914629527CA7 /* DispatchQueue+Debounce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F04FD95BACFB740FE8A455B /* DispatchQueue+Debounce.swift */; };
 		33DBBDFF0BACF2D51605F911 /* SwitcherItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E8DD0993A5B68BF701DC5F /* SwitcherItemView.swift */; };
 		3570738CD04518E70BC20929 /* WindowItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D4CF251B73A7EF7E32E42C /* WindowItem.swift */; };
+		38FB956F4A85AC41086F330D /* LaunchAtLoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE24C11E6E9C99902B92D88 /* LaunchAtLoginService.swift */; };
 		41FAD28864964A9EAC352781 /* ScreenCaptureService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B4DD9608D329C70CCDEE84 /* ScreenCaptureService.swift */; };
 		4AC3BA6954628D57128AD5F4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB704054BB1B27CF680251D /* AppDelegate.swift */; };
 		4FC59DE0FA65289D7056EBF2 /* KeyboardMonitorService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E596D79FDBC6794944F174F2 /* KeyboardMonitorService.swift */; };
@@ -66,6 +67,7 @@
 		4ACDB0881DB6E949EEA86518 /* SwitcherItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitcherItem.swift; sourceTree = "<group>"; };
 		59E8DD0993A5B68BF701DC5F /* SwitcherItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitcherItemView.swift; sourceTree = "<group>"; };
 		5D88E80A53A72E20CC4B5858 /* NSImage+Resize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSImage+Resize.swift"; sourceTree = "<group>"; };
+		5EE24C11E6E9C99902B92D88 /* LaunchAtLoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchAtLoginService.swift; sourceTree = "<group>"; };
 		60D8A7DF94015D9043D19253 /* SwitcherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitcherViewController.swift; sourceTree = "<group>"; };
 		692F6079A9DE41B9667B7E59 /* NSWindow+Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSWindow+Utilities.swift"; sourceTree = "<group>"; };
 		6B4BCC05A2B450433AB8E65A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -214,6 +216,7 @@
 				C9C715C194BC82456A0BD048 /* ApplicationActivationService.swift */,
 				49C394308A8BE89C6C6916A2 /* ApplicationService.swift */,
 				E596D79FDBC6794944F174F2 /* KeyboardMonitorService.swift */,
+				5EE24C11E6E9C99902B92D88 /* LaunchAtLoginService.swift */,
 				1DA6D6285967EA22636021E4 /* PermissionService.swift */,
 				03B4DD9608D329C70CCDEE84 /* ScreenCaptureService.swift */,
 				F6779E946F0B89286A5771A3 /* WindowService.swift */,
@@ -311,6 +314,7 @@
 				148D7D5C00CBB1390001B463 /* EmptyStateView.swift in Sources */,
 				7B63F472265848560CB5726A /* KeyboardEvent.swift in Sources */,
 				4FC59DE0FA65289D7056EBF2 /* KeyboardMonitorService.swift in Sources */,
+				38FB956F4A85AC41086F330D /* LaunchAtLoginService.swift in Sources */,
 				517C09DC5FA73634DC3D687F /* Logger.swift in Sources */,
 				8ECAE3AB48CCBBEF670B94AB /* ModifierKeyState.swift in Sources */,
 				939D3392CD696E266CFDCAE4 /* NSImage+Resize.swift in Sources */,
